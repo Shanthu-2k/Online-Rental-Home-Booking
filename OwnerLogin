@@ -1,0 +1,83 @@
+package s3;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+public class Ownerlogin extends javax.swing.JFrame {
+
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    public Ownerlogin() {
+        initComponents();
+    }
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+         if(jTextField1.getText().isEmpty()||jPasswordField1.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(this,"USERNAME OR PASSWORD ARE NOT YET INSERTED!!");
+            }
+        else
+        {
+        try {
+            String username=jTextField1.getText();
+            String password=jPasswordField1.getText();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/shanthi","root","");
+            pst=(PreparedStatement) con.prepareStatement("select * FROM owner where UserName = ? and Password = ?" );
+            pst.setString(1,username);
+            pst.setString(2,password);
+            rs=pst.executeQuery();
+            if(rs.next())
+            {
+               HouseOwner o=new HouseOwner();
+              this.hide();
+              o.setVisible(true);
+                
+                
+            }
+            else
+            {
+              JOptionPane.showMessageDialog(this,"USERNAME OR PASSWORD DO NOT MATCHED!!");
+                jTextField1.setText("");
+               jPasswordField1.setText("");
+                jTextField1.requestFocus();
+             
+            }
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(loginpage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(loginpage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+        }  
+                
+    }                                        
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    Home h=new Home();
+    h.hide();
+    h.setVisible(true);
+        
+    }                                        
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+            Ownerregistration or=new Ownerregistration();
+        this.hide();
+        or.setVisible(true);
+    }
+public static void main(String args[]) {
+java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Ownerlogin().setVisible(true);
+            }
+        });
+    }
