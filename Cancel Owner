@@ -1,0 +1,49 @@
+package s3;
+
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+public class Cancelowner extends javax.swing.JFrame {
+    Connection con;
+    PreparedStatement pst;
+    public Cancelowner() {
+        initComponents();
+    }
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        try
+        {
+            String uname=jTextField1.getText();
+            String pass=jPasswordField1.getText();
+            Class.forName("com.mysql.jdbc.Driver");
+            java.sql.Connection con = (java.sql.Connection) DriverManager.getConnection("jdbc:mysql://localhost/shanthi","root","");
+          pst=(PreparedStatement)  con.prepareStatement("DELETE FROM owner where Username = ? and Password = ?" );
+        pst.setString(1,uname);
+        pst.setString(2,pass);
+        pst.executeUpdate();
+         JOptionPane.showMessageDialog(null,"CANCELLATION PROCESS SUCCESSFUL!");
+           jTextField1.requestFocus();   
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }                                        
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+         Ownerregistration o=new Ownerregistration();
+              this.hide();
+              o.setVisible(true);
+    }                                        
+    public static void main(String args[]) {
+java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Cancelowner().setVisible(true);
+            }
+        });
+    }
