@@ -1,0 +1,64 @@
+package s3;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+public class Location extends javax.swing.JFrame {
+    public Location() {
+        initComponents();
+    }
+    Connection conn;
+    PreparedStatement pst;
+    ResultSet rs;
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        String query;
+        query = "select HouseName,Location,Category,Bedrooms,Rent,Name,ContactNo,EmailID,RegisterInfo FROM house where Location=?";
+       
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/shanthi","root","");
+            pst=(PreparedStatement) conn.prepareStatement( query);
+            pst.setString(1, jTextField1.getText());
+            rs=pst.executeQuery();
+             jTable1.setModel(DbUtils.resultSetToTableModel(rs));  
+             
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Location.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Location.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }                                        
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {                                     
+        // TODO add your handling code here:
+       
+      Homeregister hr=new Homeregister();
+        this.hide();
+        hr.setVisible(true);
+        
+        
+        
+    }                                    
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+      Houses h=new Houses();
+        this.hide();
+        h.setVisible(true);
+            
+    }                                        
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Location().setVisible(true);
+            }
+        });
+    }
