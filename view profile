@@ -1,0 +1,55 @@
+package s3;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+public class View extends javax.swing.JFrame {
+    public View() {
+        initComponents();
+    }
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+    }                                           
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        try {
+            String username=jTextField1.getText();
+            String password=jPasswordField1.getText();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/shanthi","root","");
+            pst=(PreparedStatement) con.prepareStatement("select * FROM customer where UserName = ? and Password = ?" );
+            pst.setString(1,username);
+            pst.setString(2,password);
+            rs=pst.executeQuery();
+            jTable1.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(rs));
+          
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }                                        
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        login lp=new login();
+        this.hide();
+        lp.setVisible(true);
+    }                                        
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new View().setVisible(true);
+            }
+        });
+    }
