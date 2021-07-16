@@ -1,0 +1,30 @@
+package s3;
+public class Houses extends javax.swing.JFrame {
+    public Houses() {
+        initComponents();
+    }
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        Homeregister hr=new Homeregister();
+        this.hide();
+        hr.setVisible(true);
+    }                                        
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) { 
+        Location l=new Location();
+        this.hide();
+        l.setVisible(true);
+    }                                        
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        Home h0=new Home();
+        this.hide();
+        h0.setVisible(true);
+    }                                        
+    public static void main(String args[]) {
+java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Houses().setVisible(true);
+            }
+        });
+    }
