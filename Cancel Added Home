@@ -1,0 +1,51 @@
+package s3;
+
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+public class removehome extends javax.swing.JFrame {
+    Connection con;
+    PreparedStatement pst;
+    public removehome() {
+        initComponents();
+    }
+
+    
+    
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+          try
+        {
+           String hm=jTextField1.getText();
+            Class.forName("com.mysql.jdbc.Driver");
+            java.sql.Connection con = (java.sql.Connection) DriverManager.getConnection("jdbc:mysql://localhost/shanthi","root","");
+          pst=(PreparedStatement)  con.prepareStatement("DELETE FROM house where HouseName=?" );
+        pst.setString(1,hm);
+       
+        pst.executeUpdate();
+         JOptionPane.showMessageDialog(null,"CANCELLATION PROCESS SUCCESSFUL!");
+           jTextField1.requestFocus();   
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(removehome.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(removehome.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+            
+    }                                        
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        Main1 m1=new Main1();
+        this.hide();
+        m1.setVisible(true);
+    }                                        
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new removehome().setVisible(true);
+            }
+        });
+  }
