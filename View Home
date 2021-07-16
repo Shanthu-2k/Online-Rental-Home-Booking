@@ -1,0 +1,42 @@
+package s3;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public class viewhouse extends javax.swing.JFrame {
+     Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    public viewhouse() {
+        initComponents();
+    }
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+            try {
+            String username=jTextField1.getText();
+           Class.forName("com.mysql.jdbc.Driver");
+            Connection con;
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/shanthi","root","");
+            pst=(PreparedStatement) con.prepareStatement("select * FROM homereg where Username=?" );
+            pst.setString(1,username);
+         
+            rs=pst.executeQuery();
+            jTable1.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(rs));
+           
+
+        } catch (ClassNotFoundException ex) { 
+             Logger.getLogger(viewhouse.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
+             Logger.getLogger(viewhouse.class.getName()).log(Level.SEVERE, null, ex);
+         } 
+    }                                        
+public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new viewhouse().setVisible(true);
+            }
+        });
+    }
