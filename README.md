@@ -1,34 +1,39 @@
-package s3;
-public class Home extends javax.swing.JFrame {
-public Home() {
-        initComponents();
-    }
+                                            ABSTRACT
+               Our   Project   happyhome.com  House  Rent  Booking  includes
+ the  registration  of  Owner  and  customer ,  storing  their  details  into
+ the  system , stores  the  details  of  every  customer  and  owner .  User  
+ can  search  their  house   which   places  they  wanted  and   also register
+  the  house  once  they  sign  in.  Once  the  Owner  is  sign  in  they  can
+ add  their   homes  which  they   wanted  to  sell  and   also  view    their
+ house’s   registration   details.   The  interface  is  user  friendly. Thereby
+ the   details   of   the   consumer   and   owner  are   well   protected   for
+ personal   use   and  makes   the  details  processing  very  fast. 
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {        
-        loginpage l=new loginpage();
-        this.hide();
-        l.setVisible(true);
-    }                                        
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {  
-        Ownerlogin o=new Ownerlogin();
-        this.hide();
-        o.setVisible(true);
-    }                                        
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {   
-        aboutus ab=new aboutus();
-        this.hide();
-        ab.setVisible(true);
-    }                                        
+INTRODUCTION:
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {  
-        this.setVisible(true);
-    }                                        
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home().setVisible(true);
-            }
-        });
-    }
+      happyhome.com  House rent Booking portal   is  designed  to  meet 
+ every  aspect  of  the  consumers.  happyhome.com House Rent Booking
+ includes  the  registration  of   consumer  and  owner.  User  can  search
+ the  availability  of   house  all   over  the  world.  The  interface  is  user
+ friendly.  The  details  are  well  protected  for  personal  use  and  make 
+the details  processing very fast. happyhome.com House rent Booking
+ portal   is  powerful,  flexible  and  easy  to  use .It  provides  relevant
+  information  about  the  rent  house.
+
+SCOPE OF THIS PROJECT:
+               1.It   gives  platform  for  users  and  rental  product’s  owner  in
+ an  effective  and  efficient  manner.
+
+               2.Provides  user-friendly   interface,  satisfying  the  needs  of
+   the   consumers.
+
+              3.Employs  a  new  strategy  that  facilities  easy  management  of
+ rental houses.
+
+             4.Features   commercial  and  residential  properties  for  the  sale
+ and  rent  properties.
+
+             5.To  simplify  the  work  for  the  rental  managers  so  that  work
+ can  be  effective  and  efficient.
